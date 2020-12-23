@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 
@@ -168,7 +168,7 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_GITHUB_KEY = config("SOCIAL_AUTH_GITHUB_KEY", default="")
 SOCIAL_AUTH_GITHUB_SECRET = config("SOCIAL_AUTH_GITHUB_SECRET", default="")
 
-if config('DJANGO_DEV') is not None:
+if (config('DJANGO_DEV') == False):
     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
     SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = False
@@ -181,6 +181,5 @@ else:
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_PRELOAD = True
     SECURE_HSTS_SECONDS = 60
-
 
 
