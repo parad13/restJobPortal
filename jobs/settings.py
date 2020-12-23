@@ -14,6 +14,9 @@ INSTALLED_APPS = [
     "tags.apps.TagsConfig",
     "django.contrib.sites",
     "django.contrib.flatpages",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "rest_framework_simplejwt.token_blacklist",
     "social_django",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -21,7 +24,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
 ]
 
 MIDDLEWARE = [
@@ -178,9 +180,7 @@ else:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_SECONDS = 60
 
 
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "jobs.settings")
-os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
