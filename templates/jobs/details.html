@@ -12,7 +12,7 @@
             <h1 class="heading">{{ job.title }}<br>
                 <small>at <a href="#"> {{ job.company_name }}</a></small>
             </h1>
-            <div class="job-detail-description"><i class="fa fa-map-marker job__location"> </i>
+            <div class="job-detail-description"><i class="fas fa-map-marker-alt job__location"> </i>
                 {{ job.location }} | Posted {{ job.created_at|timesince }} |
                 {% if job.type == '1' %}
                     <span class="badge featured-badge badge-success">Full time</span>

@@ -1,8 +1,8 @@
 from rest_framework import routers
 from django.urls import include, path
 from django.contrib import admin
-from django.urls import path
-from django.conf.urls import url
+from django.urls import path, re_path
+# from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 # from drf_yasg.views import get_schema_view #->
@@ -38,8 +38,8 @@ urlpatterns = [
         ),
     ),
     # path("social-auth/", include("social_django.urls", namespace="social")),
-    url("auth/", include('social_django.urls', namespace='social')),  
-    url(r"^(?P<url>.*/)$", flatpages_views.flatpage), #->
+    re_path("auth/", include('social_django.urls', namespace='social')),  
+    re_path(r"^(?P<url>.*/)$", flatpages_views.flatpage), #->
 ]
 
 

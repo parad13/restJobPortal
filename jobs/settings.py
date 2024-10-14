@@ -9,9 +9,9 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 INSTALLED_APPS = [
-    "jobsapp.apps.JobsappConfig",
-    "accounts.apps.AccountsConfig",
-    "tags.apps.TagsConfig",
+    "jobsapp",
+    "accounts",
+    "tags",
     "django.contrib.sites",
     "django.contrib.flatpages",
     "rest_framework",
@@ -38,6 +38,8 @@ MIDDLEWARE = [
 ]    
 
 ROOT_URLCONF = 'jobs.urls' 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SITE_ID = 1
 
 TEMPLATES = [
     {
@@ -70,23 +72,25 @@ DATABASES = {
     #     "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     # },
 
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': config('DB_NAME'),
-    #     'USER': config('DB_USER'),
-    #     'PASSWORD': config('DB_PASSWORD'),
-    #     'HOST': config('DB_HOST'),
-    #     'PORT': '3306',
-    # },
-
+    # mysql
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+        'HOST': config('DB_HOST'),
+        'PORT': '3306',
+    },
+
+    # postgres
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': config('DB_NAME'),
+    #     'USER': config('DB_USER'),
+    #     'PASSWORD': config('DB_PASSWORD'),
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 
 }
 
@@ -158,28 +162,29 @@ REST_FRAMEWORK = {
 
 django_heroku.settings(locals())
 
-AUTHENTICATION_BACKENDS = (
-    "social_core.backends.github.GithubOAuth2",
-    "django.contrib.auth.backends.ModelBackend",
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.facebook.FacebookOAuth2',
-)
+# AUTHENTICATION_BACKENDS = (
+#     "social_core.backends.github.GithubOAuth2",
+#     "django.contrib.auth.backends.ModelBackend",
+#     'social_core.backends.twitter.TwitterOAuth',
+#     'social_core.backends.facebook.FacebookOAuth2',
+# )
 
-SOCIAL_AUTH_GITHUB_KEY = config("SOCIAL_AUTH_GITHUB_KEY", default="")
-SOCIAL_AUTH_GITHUB_SECRET = config("SOCIAL_AUTH_GITHUB_SECRET", default="")
+# SOCIAL_AUTH_GITHUB_KEY = config("SOCIAL_AUTH_GITHUB_KEY", default="")
+# SOCIAL_AUTH_GITHUB_SECRET = config("SOCIAL_AUTH_GITHUB_SECRET", default="")
 
-if (config('DJANGO_DEV') == False):
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-    SECURE_SSL_REDIRECT = False
-    SESSION_COOKIE_SECURE = False
-    CSRF_COOKIE_SECURE = False
-    SECURE_HSTS_PRELOAD = False
-else:
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_PRELOAD = True
-    SECURE_HSTS_SECONDS = 60
+
+# if (config('DJANGO_DEV') == False):
+#     SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+#     SECURE_SSL_REDIRECT = False
+#     SESSION_COOKIE_SECURE = False
+#     CSRF_COOKIE_SECURE = False
+#     SECURE_HSTS_PRELOAD = False
+# else:
+#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#     SECURE_SSL_REDIRECT = True
+#     SESSION_COOKIE_SECURE = True
+#     CSRF_COOKIE_SECURE = True
+#     SECURE_HSTS_PRELOAD = True
+#     SECURE_HSTS_SECONDS = 60
 
 
